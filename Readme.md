@@ -4,12 +4,43 @@ CatSolver
 Problem: Stolen from the latest Professor Layton game on the 3DS.  You have a
 5x5 grid with 8 white cats and 1 black cat arranged like this:
 
-| n | n | n | n | n |
-| - | - | - | - | - |
-| n | W | W | W | n |
-| n | W | B | W | n |
-| n | W | W | W | n |
-| n | n | n | n | n |
+<table>
+ <tr>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+ </tr>
+ <tr>
+  <td>-</td>
+  <td>W</td>
+  <td>W</td>
+  <td>W</td>
+  <td>-</td>
+ </tr>
+  <tr>
+  <td>-</td>
+  <td>W</td>
+  <td>B</td>
+  <td>W</td>
+  <td>-</td>
+ </tr>
+  <tr>
+  <td>-</td>
+  <td>W</td>
+  <td>W</td>
+  <td>W</td>
+  <td>-</td>
+ </tr>
+  <tr>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+  <td>-</td>
+ </tr>
+</table>
 
  White and black cats can jump over white cats to end up in an empty space,
  removing the jumped over white cat. Your goal is to have the black cat
