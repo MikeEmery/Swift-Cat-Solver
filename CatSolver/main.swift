@@ -73,7 +73,7 @@ let potentialMoves = [
 ]
 
 class Board {
-    let tiles : TileState[][];
+    let tiles : [[TileState]];
     let blackPosition: Position;
     
     init() {
@@ -87,16 +87,16 @@ class Board {
         blackPosition = Position(row: 2, col: 2)
     }
     
-    init(tiles: TileState[][], blackPosition: Position) {
-        self.tiles = tiles.copy()
+    init(let tiles: [[TileState]], blackPosition: Position) {
+        self.tiles = tiles
         self.blackPosition = blackPosition
     }
     
-    func tileCopy() -> TileState[][] {
-        var copy = TileState[][](count: tiles.count, repeatedValue: TileState[]());
+    func tileCopy() -> [[TileState]] {
+        var copy = [[TileState]](count: tiles.count, repeatedValue: [TileState]());
         
-        for rowIdx in 0..tiles.count {
-            copy[rowIdx] = tiles[rowIdx].copy()
+        for rowIdx in 0..<tiles.count {
+            copy[rowIdx] = tiles[rowIdx]
         }
         
         return copy;
@@ -128,13 +128,13 @@ class Board {
         return result
     }
     
-    func buildMoves() -> Board[] {
+    func buildMoves() -> [Board] {
         
-        var moves = Board[]();
+        var moves = [Board]();
         
         if(self.hasPotential()) {
-            for rowIdx in 0..tiles.count {
-                for colIdx in 0..tiles[rowIdx].count {
+            for rowIdx in 0..<tiles.count {
+                for colIdx in 0..<tiles[rowIdx].count {
                     for candidate in potentialMoves {
                         if let result = move(Position(row: rowIdx, col: colIdx), move: candidate) {
                             moves.append(result);
@@ -178,9 +178,9 @@ class Board {
     
     func whiteCount() -> Int {
         var whiteCount = 0
-        for i in 0..tiles.count {
+        for i in 0..<tiles.count {
             let row = tiles[i];
-            for j in 0..row.count {
+            for j in 0..<row.count {
                 if(isWhite(Position(row: i, col: j))) {
                     whiteCount++
                 }
@@ -207,11 +207,11 @@ class Board {
     }
     
     func solve() {
-        solveImpl(Board[](), current: self)
+        solveImpl([Board](), current: self)
     }
     
-    func solveImpl(let moveSet: Board[], current: Board) {
-        var copy = moveSet.copy()
+    func solveImpl(let moveSet: [Board], current: Board) {
+        var copy = moveSet
         copy.append(current)
         var newMoves = current.buildMoves()
         
@@ -231,13 +231,13 @@ class Board {
         }
     }
     
-    func printMoves(moves: Board[]) {
-        var strs = String[]()
+    func printMoves(moves: [Board]) {
+        var strs = [String]()
         
         var rowCount = self.tiles.count;
         var colCount = 0
         
-        for rowIdx in 0..rowCount {
+        for rowIdx in 0..<rowCount {
             var str = ""
             for board in moves {
                 var row = board.tiles[rowIdx]
